@@ -1,5 +1,3 @@
-<%# アプリの全体のビューを表示させている %>
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -13,10 +11,6 @@
     <header class="header">
       <div class="header__bar row">
         <h1 class="grid-6"><a href="/">OCATweet</a></h1>
-       
-       <%# 下記の記述によりログインの有無が確認できる。
-       ログインしているかどうかの判定は、user_signed_in?メソッドを使用します。
-       user_signed_in?メソッドは、ユーザーがログインしていればtrueを、ログアウト状態であればfalseを返却します。 %>
         <div class="user_nav grid-6">
           <%= link_to  "投稿する", root_path, class: "post" %>
         </div>
