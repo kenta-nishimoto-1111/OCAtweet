@@ -11,6 +11,12 @@ class TweetsController < ApplicationController
     Tweet.create(tweet_params)
   end
 
+  def destroy
+    # 削除を送られてきたときに実行
+    tweet = Tweet.find(params[:id])
+    tweet.destroy
+  end
+
   private
   
   def tweet_params
