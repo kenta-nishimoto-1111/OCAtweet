@@ -17,6 +17,16 @@ class TweetsController < ApplicationController
     tweet.destroy
   end
 
+  def edit
+    @tweet = Tweet.find(params[:id])
+  end
+
+  def update
+    # 編集されたデータを更新されるところ
+    tweet = Tweet.find(params[:id])
+    tweet.update(tweet_params)
+  end
+
   private
   
   def tweet_params
