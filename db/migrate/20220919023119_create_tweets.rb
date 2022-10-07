@@ -7,3 +7,6 @@ class CreateTweets < ActiveRecord::Migration[6.0]
     end
   end
 end
+
+
+rails generate migration RemoveNameFromTweets name:string
