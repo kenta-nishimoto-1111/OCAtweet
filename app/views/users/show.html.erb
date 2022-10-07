@@ -1,4 +1,5 @@
 <div class="contents row">
+  <p><%= @nickname %>さんの投稿一覧</p>
   <% @tweets.each do |tweet| %>
     <div class="content_post">
       <div class="more">
@@ -15,7 +16,7 @@
         <% end %>
       </div>
       <div>
-        <a href="/users/<%= tweet.user.id %>">
+        <a href="/">
           <span>投稿者:</span><%= tweet.user.nickname %>
         </a>
       </div>
@@ -23,3 +24,4 @@
     </div>
   <% end %>
 </div>
+
