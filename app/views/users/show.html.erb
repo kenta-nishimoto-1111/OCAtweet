@@ -1,30 +1,8 @@
 <div class="contents row">
   <p><%= @nickname %>さんの投稿一覧</p>
   <% @tweets.each do |tweet| %>
-    <div class="content_post">
-      <div class="more">
-        <span><%= image_tag 'arrow_top.png' %></span>
-        <ul class="more_list">
-          <li>
-            <%= link_to '詳細', tweet_path(tweet.id), method: :get %>
-          </li>
-        <% if user_signed_in? && current_user.id == tweet.user_id %>
-          <li>
-            <%= link_to '編集', edit_tweet_path(tweet.id), method: :get %>
-          </li>
-          <li>
-            <%= link_to '削除', tweet_path(tweet.id) , method: :delete %>
-          </li>
-        </ul>
-        <% end %>
-      </div>
-      <div>
-        <a href="/">
-          <span>投稿者:</span><%= tweet.user.nickname %>
-        </a>
-      </div>
-      <div class="tweet_text"><%= tweet.text %></div>
-    </div>
+     <%= render partial: "tweets/tweet", locals: { tweet: tweet } %>
+
   <% end %>
 </div>
 

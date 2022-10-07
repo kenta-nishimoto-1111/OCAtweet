@@ -1,0 +1,30 @@
+<div class="content_post">
+  <div class="more">
+    <span><%= image_tag 'arrow_top.png' %></span>
+    <ul class="more_list">
+     <%# 下記の記述で詳細ボタンが追加される %>
+      <li>
+        <%= link_to '詳細', tweet_path(tweet.id), method: :get %>
+      </li>
+      <%#下記の記述でログイン中かつユーザー出ないと編集と削除が表示できないようにした%>
+      <% if user_signed_in? && current_user.id == tweet.user_id %>
+        <%# 下記の記述で編集ボタンが追加される %>
+        <li>
+          <%= link_to '編集', edit_tweet_path(tweet.id), method: :get %>
+        </li>
+
+        <%# 下記の記述で削除ボタンが追加される %>
+        <li>
+          <%= link_to '削除', tweet_path(tweet.id) , method: :delete %>
+          <%# tweet_pathの記述でDELETEのルーティングになる %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div>
+    <a href="/users/<%= tweet.user.id %>">
+      <span>投稿者:</span><%= tweet.user.nickname %>
+    </a>
+  </div>
+    <div class="tweet_text"><%= tweet.text %></div>
+</div>
