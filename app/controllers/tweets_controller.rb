@@ -1,4 +1,6 @@
 class TweetsController < ApplicationController
+  before_action :move_to_index, except: [:index, :show, :search]
+
   def index
     @tweets = Tweet.includes(:user).order("created_at DESC")
   end
@@ -40,5 +42,9 @@ class TweetsController < ApplicationController
   
   def tweet_params
     params.require(:tweet).permit(:text).merge(user_id: current_user.id)  
+  end
+
+  def move_to_index
+    redirect_to action: :index unless user_signed_in?
   end
 end
