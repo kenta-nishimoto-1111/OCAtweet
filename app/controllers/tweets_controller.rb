@@ -8,11 +8,13 @@ class TweetsController < ApplicationController
   end
 
   def create
-    Tweet.create(tweet_params)
+    @tweet = Tweet.new(tweet_params)
+    unless @tweet.save
+      render :new
+    end
   end
 
   def destroy
-    # 削除を送られてきたときに実行
     tweet = Tweet.find(params[:id])
     tweet.destroy
   end
@@ -22,9 +24,10 @@ class TweetsController < ApplicationController
   end
 
   def update
-    # 編集されたデータを更新されるところ
-    tweet = Tweet.find(params[:id])
-    tweet.update(tweet_params)
+    @tweet = Tweet.find(params[:id])
+    unless @tweet.update(tweet_params)
+      redirect_to action: :edit
+    end
   end
 
   def show
